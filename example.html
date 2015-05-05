@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ReactTable - Examples and Demo</title>
+    <link rel="stylesheet" href="css/bootstrap-paper.min.css"/>
+    <link rel="stylesheet" href="bower_components/ReactTable/dist/react-table.css"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ReactTable</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav">
+                <li><a href="#basic-table-hdr">Home</a></li>
+                <li><a href="#custom-template-hdr">Custom Template</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Usage
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#user-content-options">Options</a></li>
+                        <li><a href="#user-content-table-usage-example">Usage</a></li>
+                        <li><a href="#user-content-possible-columndefs-options">Column Configuration</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#user-content-developing">Developing</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="container-fluid">
+        <div class="panel panel-primary" id="basic-table-hdr">
+            <div class="panel-heading">
+                Basic Table <span class="btn btn-primary btn-xs">&lt;&gt;</span>
+            </div>
+            <div class="panel-body">
+                <div id="basic-table"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="panel panel-primary" id="custom-template-hdr">
+            <div class="panel-heading">
+                Custom Template - URL in Cell <span class="btn btn-primary btn-xs">&lt;&gt;</span>
+            </div>
+            <div class="panel-body">
+                <div id="custom-template"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <article class="markdown-body entry-content" itemprop="mainContentOfPage" id="usage">
+            <h3><a id="user-content-reacttable" class="anchor" href="#reacttable" aria-hidden="true"><span
+                    class="octicon octicon-link"></span></a>ReactTable</h3>
+
+            <p>High Performance HTML Table with Group By functionality Implemented using Facebook <a
+                    href="https://github.com/facebook/react">react.js</a></p>
+
+            <p><em>requires <a href="https://github.com/facebook/react">react.js</a></em></p>
+
+            <p>Capabilities Include:</p>
+
+            <ul>
+                <li>Able to Handle Large Quantities of Data</li>
+                <li>Add/Remove Columns</li>
+                <li>Sorting/Custom Sorting</li>
+                <li>Row Grouping to Arbitrary Depth</li>
+                <li>Automatic/Custom Aggregation</li>
+                <li>Custom Cell Class Names</li>
+                <li>Pagination</li>
+                <li>Multiple Tables</li>
+                <li>Custom Formatting Callback</li>
+                <li>Drag &amp; Drop Columns (Not Functional)</li>
+                <li>Drop a Column to Group (Not Functional)</li>
+            </ul>
+
+            <h2>
+                <a id="user-content-install" class="anchor" href="#install" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Install</h2>
+
+            <p>Run the following <code>bower</code> command, this will install <a
+                    href="https://github.com/facebook/react">react.js</a>
+                and <a href="http://jquery.com/download/">jQuery</a> as a dependecy.</p>
+
+<pre><code>&gt; bower install ReactTable
+</code></pre>
+
+            <h2>
+                <a id="user-content-usage" class="anchor" href="#usage" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Usage</h2>
+
+<pre><code>var options = { ... };
+    React.renderComponent(Table(options), document.getElementById("table"));
+</code></pre>
+
+            <h2>
+                <a id="user-content-options" class="anchor" href="#options" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Options</h2>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Option Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>data</td>
+                    <td>Array of Objects</td>
+                    <td>the raw data array (Required)</td>
+                </tr>
+                <tr>
+                    <td>columnDefs</td>
+                    <td>Array of Objects</td>
+                    <td>column definitions on how to construct the headers of the table</td>
+                </tr>
+                <tr>
+                    <td>groupBy</td>
+                    <td>Array of Objects</td>
+                    <td>columnDefs to dynamically group rows by</td>
+                </tr>
+                <tr>
+                    <td>afterColumnRemove</td>
+                    <td>Function</td>
+                    <td>callback function to invoke after a column has been removed by the user</td>
+                </tr>
+                <tr>
+                    <td>beforeColumnAdd</td>
+                    <td>Function</td>
+                    <td>callback function to invoke when the "+" button is clicked on the header</td>
+                </tr>
+                <tr>
+                    <td>onSelectCallback</td>
+                    <td>Function</td>
+                    <td>callback function to invoke when a detail row is selected. The selected row will be passed to
+                        the
+                        callback function as the first argument. The second argument passed will be a boolean
+                        representing
+                        the selection state of the row that was just clicked on
+                    </td>
+                </tr>
+                <tr>
+                    <td>onSummarySelectCallback</td>
+                    <td>Function</td>
+                    <td>callback function to invoke when a summary row is selected. The selected row will be passed as
+                        the
+                        first argument to the callback as an object that contain two properties: <code>detailRows</code>
+                        which contains detail rows belonging to the given summary row plus the <code>summaryRow</code>
+                        itself. The second argument passed will be a boolean representing the selection state of the row
+                        that was just clicked on
+                    </td>
+                </tr>
+                <tr>
+                    <td>onRightClick</td>
+                    <td>Function</td>
+                    <td>callback function to invoke when a row is right-clicked. The first argument is the row clicked
+                        on,
+                        the second argument is the event. Use event.preventDefault() (or return false) to prevent the
+                        brower's right-click menu to appear
+                    </td>
+                </tr>
+                <tr>
+                    <td>selectedRows</td>
+                    <td>Array of Strings</td>
+                    <td>row keys of initially selected rows, must be used with the 'rowKey' option</td>
+                </tr>
+                <tr>
+                    <td>rowKey</td>
+                    <td>String</td>
+                    <td>specifies the property in the data array that should be used as the unique identifier of the
+                        given
+                        row for example: <code>{ssn: xxxx, first_name: "Bob"}; { rowKey: 'ssn'}</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>customMenuItems</td>
+                    <td>Object</td>
+                    <td>specifies custom header menu options. Each key of the given object corresponds to the title of
+                        the
+                        new menu option and the value is an object e.g. <code>{infoBox: "columnDataPoint"}</code>.
+                        <code>infoBox</code>
+                        displays a box whose contents are equal to the columnDef's columnDataPoint on hover of the menu
+                        item. As of right now, infoBox is the only supported custom menu object type. This will only
+                        appear
+                        in columns where columnDataPoint exists in columnDef.
+                    </td>
+                </tr>
+                <tr>
+                    <td>presort</td>
+                    <td>Object</td>
+                    <td>specifies which column to pre-sort a rendered table. Key corresponds to a key in the data object
+                        to
+                        sort on and whose value is either <code>asc</code> or <code>desc</code> depending on wheather
+                        you
+                        would like ascending or descending sorting automatically when the table is rendered. e.g. <code>{date:
+                            'asc'}</code>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>
+                <a id="user-content-table-usage-example" class="anchor" href="#table-usage-example"
+                   aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Table Usage Example</h2>
+
+            <div class="highlight highlight-js"><pre><span class="pl-k">var</span> options <span class="pl-k">=</span> {
+        data<span class="pl-k">:</span> data,
+        columnDefs<span class="pl-k">:</span> [ {colTag<span class="pl-k">:</span> <span class="pl-s"><span
+                        class="pl-pds">"</span>first_name<span class="pl-pds">"</span></span>, text<span
+                        class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>First Name<span
+                        class="pl-pds">"</span></span>}, ... ],
+        groupBy<span class="pl-k">:</span> [{colTag<span class="pl-k">:</span> <span class="pl-s"><span
+                        class="pl-pds">"</span>birth_city<span class="pl-pds">"</span></span>}], customMenuItems<span
+                        class="pl-k">:</span> {Description<span class="pl-k">:</span> {infoBox<span
+                        class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>description<span
+                        class="pl-pds">"</span></span>}}
+    };
+    React.renderComponent(React.<span class="pl-c1">createElement</span>(ReactTable,options, <span class="pl-c1">document</span>.<span
+                        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>table<span
+                        class="pl-pds">"</span></span>));</pre>
+            </div>
+
+            <h2>
+                <a id="user-content-possible-columndefs-options" class="anchor" href="#possible-columndefs-options"
+                   aria-hidden="true"><span class="octicon octicon-link"></span></a>Possible <code>columnDefs</code>
+                Options
+            </h2>
+
+            <p>The following properties are valid on <code>columnDef</code> objects, which are nested under the <code>columnDefs</code>
+                array passed to the main table options. These options control the appearance and behaviors of the
+                associated
+                columns.</p>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Column Option Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>colTag</td>
+                    <td>column identifier</td>
+                </tr>
+                <tr>
+                    <td>conditionalAggregationMethod</td>
+                    <td>changes the aggregation behavior of the column given the current 'groupBy' attribute. Accepts an
+                        object where the keys are colTag(s) and values are aggregation methods. ex: <code>conditionalAggregationMethod:
+                            { colA: 'straight_sum', colB: 'average' }</code> will the sub-total to be computed as a
+                        'average' when grouping by colB and 'straight sum' when grouping by colA
+                    </td>
+                </tr>
+                <tr>
+                    <td>text</td>
+                    <td>display text in the table header</td>
+                </tr>
+                <tr>
+                    <td>format</td>
+                    <td>choose from 'number', 'currency', 'date' or 'string'</td>
+                </tr>
+                <tr>
+                    <td>sort</td>
+                    <td>custom callback function for sorting the column</td>
+                </tr>
+                <tr>
+                    <td>reverseSort</td>
+                    <td>custom callback function for sorting the column in reverse (if this is not provided but custom
+                        sort
+                        is, it will use inverse of custom sort)
+                    </td>
+                </tr>
+                <tr>
+                    <td>cellClassCallback</td>
+                    <td>custom callback for applying custom CSS classes to cells. should should return a object with
+                        class
+                        names set to true in an object. for example <code>{ green: true, special: true}</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>onCellSelect</td>
+                    <td>custom callback function that triggers when a cell in this column is clicked. <code>this</code>
+                        is
+                        bound to the row component, first argument to the callback is the cell content
+                    </td>
+                </tr>
+                <tr>
+                    <td>formatInstructions</td>
+                    <td>a string that represents how you want cells to be formatted, options are</td>
+                </tr>
+                <tr>
+                    <td>summaryTemplate</td>
+                    <td>a function callback that returns a React Component, this component will be appended to the
+                        content
+                        of the first column of summary rows. Argument passed: <code>data</code> representing the summary
+                        row
+                    </td>
+                </tr>
+                <tr>
+                    <td>cellTemplate</td>
+                    <td>custom callback function provided to the table that returns an React component to be rendered.
+                        first
+                        argument is the row being rendered
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>
+                <a id="user-content-valid-formatinstructions-options" class="anchor"
+                   href="#valid-formatinstructions-options" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Valid <code>formatInstructions</code> Options</h2>
+
+            <ul>
+                <li>multiplier - a number to multiply the cell content by</li>
+                <li>roundTo - the number of digits to round to</li>
+                <li>unit - text to attach to every cell in the column (such as m, KG, EUR)</li>
+                <li>alignment - choose from center, left and right</li>
+                <li>separator - set to <code>true</code> to turn on comma separator for large numbers</li>
+                <li>showZeroAsBlank - set to <code>true</code> to have cells which equal exactly zero show up as blank
+                    in
+                    the table
+                </li>
+            </ul>
+
+            <h2>
+                <a id="user-content-functions-that-can-be-called-on-reacttable-object" class="anchor"
+                   href="#functions-that-can-be-called-on-reacttable-object" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Functions that can be called on ReactTable object</h2>
+
+            <p>The following functions can be called on the variable which is returned after rendering a ReactTable.</p>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Function Name</th>
+                    <th>Returns</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>toggleSelectDetailRow(key)</td>
+                    <td>undefined</td>
+                    <td>Given a rowKey, toggles the selection of a detail row in the table</td>
+                </tr>
+                <tr>
+                    <td>toggleSelectSummaryRow(key)</td>
+                    <td>undefined</td>
+                    <td>Given a path rowKey, toggles the selection of a summary row in the table</td>
+                </tr>
+                <tr>
+                    <td>clearAllRowSelections()</td>
+                    <td>undefined</td>
+                    <td>Clears all detail and summary row selections</td>
+                </tr>
+                <tr>
+                    <td>getRowSelectionStates()</td>
+                    <td>Object</td>
+                    <td>Returns an object with two entries: One with each of detail and summary row selections</td>
+                </tr>
+                <tr>
+                    <td>addColumn(columnDef, data)</td>
+                    <td>undefined</td>
+                    <td>Adds (or updates by checking <code>colTag</code>) a column to the table. If <code>data</code> is
+                        passed in, <code>data</code> is replaced as the new data object in table
+                    </td>
+                </tr>
+                <tr>
+                    <td>redoPresort()</td>
+                    <td>undefined</td>
+                    <td>Redos the <code>preSort</code> from the table definition.</td>
+                </tr>
+                <tr>
+                    <td>replaceData(data)</td>
+                    <td>undefined</td>
+                    <td>Sets the passed in <code>data</code> to be the data object in the table</td>
+                </tr>
+                <tr>
+                    <td>setStyleByKey(key, styleObj)</td>
+                    <td>undefined</td>
+                    <td>For a given rowKey, sets a detail row to have extra styling per the passed in styleObj.</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h4>
+                <a id="user-content-example" class="anchor" href="#example" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Example</h4>
+
+            <p>Please note you <strong>cannot</strong> have spaces in the format instruction values, since spaces are
+                used
+                as a separator</p>
+
+<pre><code>{ ..., formatInstructions: "multiplier:100 unit:KG"}
+</code></pre>
+
+            <h2>
+                <a id="user-content-developing" class="anchor" href="#developing" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Developing</h2>
+
+            <p>You will need <a href="http://nodejs.org/download/">node.js</a> installed on your development PC in order
+                to
+                use the tools below</p>
+
+            <p>You will first need to download and install <a
+                    href="http://facebook.github.io/react/docs/tooling-integration.html">react-tools</a> by running:</p>
+
+<pre><code>&gt; npm install react-tools
+</code></pre>
+
+            <p>Each time you update source files, you should run the JSX compiler provided as part of react-tools
+                via:</p>
+
+<pre><code>&gt; jsx ./src ./build
+    // assuming your working directory is the project base directory
+</code></pre>
+
+            <p>Alternatively you can automatically perform this by using <code>jsx --watch</code> or setup a file
+                watcher in
+                Webstorm. If you are setting up a file watcher in Webstorm, it may be best to install
+                <code>react-tools</code> locally instead of globally, simply remove <code>-g</code> from the above
+                <code>npm</code> command</p>
+
+            <p>To compile the project run:</p>
+
+<pre><code>&gt; grunt build
+</code></pre>
+        </article>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/react/react-with-addons.js"></script>
+        <script src="bower_components/ReactTable/dist/react-table.js"></script>
+        <script src="js/app.js"></script>
+    </div>
+
+</div>
+
+</body>
+</html>
